@@ -55,6 +55,7 @@
             this.closeBtn.TabIndex = 1;
             this.closeBtn.Text = "Close";
             this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
             // usernameLabel
             // 
@@ -86,15 +87,16 @@
             // 
             // usernameTb
             // 
-            this.usernameTb.Location = new System.Drawing.Point(80, 74);
+            this.usernameTb.Location = new System.Drawing.Point(129, 74);
             this.usernameTb.Name = "usernameTb";
             this.usernameTb.Size = new System.Drawing.Size(215, 20);
             this.usernameTb.TabIndex = 5;
             // 
             // passwordTb
             // 
-            this.passwordTb.Location = new System.Drawing.Point(80, 114);
+            this.passwordTb.Location = new System.Drawing.Point(129, 114);
             this.passwordTb.Name = "passwordTb";
+            this.passwordTb.PasswordChar = '*';
             this.passwordTb.Size = new System.Drawing.Size(215, 20);
             this.passwordTb.TabIndex = 6;
             // 
@@ -102,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 217);
+            this.ClientSize = new System.Drawing.Size(404, 217);
             this.Controls.Add(this.passwordTb);
             this.Controls.Add(this.usernameTb);
             this.Controls.Add(this.loginLabel);
@@ -112,6 +114,7 @@
             this.Controls.Add(this.loginBtn);
             this.Name = "LoginForm";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

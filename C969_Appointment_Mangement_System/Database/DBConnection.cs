@@ -25,8 +25,6 @@ namespace C969_Appointment_Mangement_System.Database
 
                 //open connection
                 conn.Open();
-
-                MessageBox.Show("Connection is open");
             }
             catch (Exception ex)
             {
