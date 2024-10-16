@@ -65,5 +65,33 @@ namespace C969_Appointment_Mangement_System
             addCustomerForm.Show();
             this.Close();
         }
+
+        private void deleteCustomerBtn_Click(object sender, EventArgs e)
+        {
+            if (CustomerDGV.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a customer from the table to delete.");
+            }
+            else
+            {
+                try
+                {
+                    int customerId = (int)CustomerDGV.SelectedRows[0].Cells[0].Value;
+                    string deleteQuery = $"DELETE FROM customer WHERE customerId = {customerId}";
+                    DialogResult confirmation = MessageBox.Show("Are you sure you want to delete this customer?", "Delete Customer?", MessageBoxButtons.YesNo);
+                    if ( confirmation == DialogResult.Yes)
+                    {
+                        cmd = new MySqlCommand(deleteQuery, conn);
+                        cmd.Prepare();
+                        cmd.ExecuteNonQuery();
+                        populateCustomerTable();
+                    }
+                }
+                catch (MySqlException ex) 
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }
