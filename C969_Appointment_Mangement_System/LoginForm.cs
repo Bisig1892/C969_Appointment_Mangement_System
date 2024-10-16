@@ -101,7 +101,7 @@ namespace C969_Appointment_Mangement_System
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
     }
 }
