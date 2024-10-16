@@ -44,7 +44,7 @@ namespace C969_Appointment_Mangement_System
                 cmd = new MySqlCommand(countryIfExists, conn);
                 int countryIndex = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
 
-                string addCountry = $"INSERT INTO country VALUES({countryIndex}, '{country}', NOW(), 'admin', NOW(), NOW())";
+                string addCountry = $"INSERT INTO country VALUES({countryIndex}, '{country}', UTC_TIMESTAMP() , 'admin', UTC_TIMESTAMP() , UTC_TIMESTAMP() )";
                 var countryInsertCommand = new MySqlCommand(addCountry, conn);
                 countryInsertCommand.Prepare();
                 countryInsertCommand.ExecuteNonQuery();
@@ -55,7 +55,7 @@ namespace C969_Appointment_Mangement_System
                 cmd = new MySqlCommand(cityIfExists, conn);
                 int cityIndex = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
 
-                string addCity = $"INSERT INTO city VALUES({cityIndex},'{city}', {countryIndex}, NOW(), 'admin', NOW(), 'admin')";
+                string addCity = $"INSERT INTO city VALUES({cityIndex},'{city}', {countryIndex}, UTC_TIMESTAMP(), 'admin', UTC_TIMESTAMP(), 'admin')";
                 var cityInsertCommand = new MySqlCommand(addCity, conn);
                 cityInsertCommand.Prepare();
                 cityInsertCommand.ExecuteNonQuery();
@@ -65,7 +65,7 @@ namespace C969_Appointment_Mangement_System
                 cmd = new MySqlCommand(addressIfExists, conn);
                 int addressIndex = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
 
-                string addAddress = $"INSERT INTO address VALUES({addressIndex}, '{address}', '', {cityIndex}, 12345, '{phone}', NOW(), 'admin', NOW(), 'admin')";
+                string addAddress = $"INSERT INTO address VALUES({addressIndex}, '{address}', '', {cityIndex}, 12345, '{phone}', UTC_TIMESTAMP(), 'admin', UTC_TIMESTAMP(), 'admin')";
                 var addressInsertCommand = new MySqlCommand(addAddress, conn);
                 addressInsertCommand.Prepare();
                 addressInsertCommand.ExecuteNonQuery();
@@ -75,7 +75,7 @@ namespace C969_Appointment_Mangement_System
                 cmd = new MySqlCommand(customerIfExists, conn);
                 int customerIndex = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
 
-                string addCustomer = $"INSERT INTO customer VALUES({customerIndex}, '{name}', {addressIndex}, 1, NOW(), 'admin', NOW(), 'admin')";
+                string addCustomer = $"INSERT INTO customer VALUES({customerIndex}, '{name}', {addressIndex}, 1, UTC_TIMESTAMP(), 'admin', UTC_TIMESTAMP(), 'admin')";
                 var customerInsertCommand = new MySqlCommand(addCustomer, conn);
                 customerInsertCommand.Prepare();
                 customerInsertCommand.ExecuteNonQuery();
