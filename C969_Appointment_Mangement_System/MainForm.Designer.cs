@@ -93,6 +93,7 @@
             this.updateCustomerBtn.TabIndex = 7;
             this.updateCustomerBtn.Text = "Update Customer";
             this.updateCustomerBtn.UseVisualStyleBackColor = true;
+            this.updateCustomerBtn.Click += new System.EventHandler(this.updateCustomerBtn_Click);
             // 
             // deleteCustomerBtn
             // 

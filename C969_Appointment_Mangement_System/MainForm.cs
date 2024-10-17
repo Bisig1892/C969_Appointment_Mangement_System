@@ -65,6 +65,26 @@ namespace C969_Appointment_Mangement_System
             addCustomerForm.Show();
             this.Close();
         }
+        private void updateCustomerBtn_Click(object sender, EventArgs e)
+        {
+            string customerId = CustomerDGV.CurrentRow.Cells[0].Value.ToString();
+            string name = CustomerDGV.CurrentRow.Cells[1].Value.ToString();
+            string address = CustomerDGV.CurrentRow.Cells[2].Value.ToString();
+            string phone = CustomerDGV.CurrentRow.Cells[3].Value.ToString();
+            string city = CustomerDGV.CurrentRow.Cells[4].Value.ToString();
+            string country = CustomerDGV.CurrentRow.Cells[5].Value.ToString();
+
+            if (CustomerDGV.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a customer you would like to update information for.");
+            }
+            else
+            {
+                UpdateCustomerForm updateCustomerForm = new UpdateCustomerForm(customerId, name, address, phone, city, country);
+                updateCustomerForm.Show();
+                this.Close();
+            }
+        }
 
         private void deleteCustomerBtn_Click(object sender, EventArgs e)
         {
@@ -93,5 +113,6 @@ namespace C969_Appointment_Mangement_System
                 }
             }
         }
+
     }
 }
