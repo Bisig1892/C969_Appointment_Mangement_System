@@ -56,6 +56,8 @@ namespace C969_Appointment_Mangement_System
             // letter, number and spaces needed for address
             Regex addressRegex = new Regex(@"^[a-zA-Z0-9\s]+$");
 
+
+            // validates the text entries made by the user with the regex created above
             Validate validate = () =>
             {
                 bool validation = false;
@@ -86,6 +88,7 @@ namespace C969_Appointment_Mangement_System
                 return validation;
             };
 
+            // updates the records for the customer selected
             if (validate() == true)
             {
                 try
@@ -115,7 +118,7 @@ namespace C969_Appointment_Mangement_System
                 }
             }
         }
-
+        // closes form and reloads main form
         private void closeBtn_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm();

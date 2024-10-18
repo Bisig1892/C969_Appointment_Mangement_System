@@ -56,7 +56,6 @@ namespace C969_Appointment_Mangement_System
 
             try
             {
-                //verifyUser(username, password);
                 cmd = new MySqlCommand($"SELECT userId, userName, password FROM user WHERE userName = '{username}' AND password = '{password}'", conn);
                 DBConnection.startConnection();
                 using (reader = cmd.ExecuteReader())

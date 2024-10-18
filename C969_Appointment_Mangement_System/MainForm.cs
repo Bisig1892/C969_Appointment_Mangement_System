@@ -25,7 +25,7 @@ namespace C969_Appointment_Mangement_System
             populateCustomerTable();
             populateAppointmentTable();
         }
-
+        // populates the appointment table
         private void populateAppointmentTable()
         {
             cmd = new MySqlCommand("SELECT appointmentId AS ID, customer.customerName AS Customer, user.userName AS User, title AS Title, type AS Type, appointment.description AS Description " +
@@ -41,7 +41,7 @@ namespace C969_Appointment_Mangement_System
             }
             reader.Close();
         }
-
+        // populates the customer table
         private void populateCustomerTable()
         {
             cmd = new MySqlCommand("SELECT customer.customerId AS ID, customer.customerName AS Customer_Name, address.address AS Address, address.phone AS Phone, city.city AS City, country.country AS Country " +
@@ -58,13 +58,14 @@ namespace C969_Appointment_Mangement_System
             }
             reader.Close();
         }
-
+        // opens the add customer form
         private void addCustomerBtn_Click(object sender, EventArgs e)
         {
             AddCustomerForm addCustomerForm = new AddCustomerForm();
             addCustomerForm.Show();
             this.Close();
         }
+        // opens the update customer form with the information prefilled in textboxes for selected customer
         private void updateCustomerBtn_Click(object sender, EventArgs e)
         {
             string customerId = CustomerDGV.CurrentRow.Cells[0].Value.ToString();
@@ -85,7 +86,7 @@ namespace C969_Appointment_Mangement_System
                 this.Close();
             }
         }
-
+        // deletes the customer selected
         private void deleteCustomerBtn_Click(object sender, EventArgs e)
         {
             if (CustomerDGV.SelectedRows.Count == 0)

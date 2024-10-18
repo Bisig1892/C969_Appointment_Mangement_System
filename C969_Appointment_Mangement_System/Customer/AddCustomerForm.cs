@@ -43,10 +43,10 @@ namespace C969_Appointment_Mangement_System
             // phone numbers without dashes
             //Regex phone2Regex = new Regex(@"^\d{10}$");
 
-            // letter and spaces only
+            // letters and spaces only
             Regex letterAndWhitespaceRegex = new Regex(@"^[a-zA-Z\s]+$");
 
-            // letter, number and spaces needed for address
+            // letters, numbers, and spaces needed for address
             Regex addressRegex = new Regex(@"^[a-zA-Z0-9\s]+$");
 
 
@@ -54,27 +54,26 @@ namespace C969_Appointment_Mangement_System
 
             Validate validate = () =>
             {
+                // checks to see if fields are empty
                 bool validation = false;
                 if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(city) || string.IsNullOrWhiteSpace(country))
                 {
                     MessageBox.Show("All fields must be filled out.");
                     validation = false;
                 }
+                // checks the formatting on the phone entry is correct
                 else if (!phone1Regex.IsMatch(phone))
                 {
                     MessageBox.Show("Please enter a valid 10 digit phone number.\nExample:\n123-456-7890 or 1234567890");
                     validation = false;
                 }
-                //else if (!phone2Regex.IsMatch(phone))
-                //{
-                //    MessageBox.Show("Please enter a valid 10 digit phone number.\nExample:\n123-456-7890 or 1234567890");
-                //    validation = false;
-                //}
+                // checks to make sure only letters and spaces between words are a used
                 else if (!letterAndWhitespaceRegex.IsMatch(name) || !letterAndWhitespaceRegex.IsMatch(city) || !(letterAndWhitespaceRegex.IsMatch(country)))
                 {
                     MessageBox.Show("Please only use uppercase and lowercase letters for the following fields:\nName, City, Country");
                     validation = false;
                 }
+                // checks address to make sure only numbers, letters, and spaces are used
                 else if (!addressRegex.IsMatch(address))
                 {
                     MessageBox.Show("Addresses can only have numbers, letters, and spaces.");
@@ -91,6 +90,9 @@ namespace C969_Appointment_Mangement_System
             {
                 try
                 {
+                    /*
+                     These three functions check to database to make sure none of the entries exist already. If they do they will pull the ID and use the entry instead of making a duplicate while creating the customer.
+                     */
                     int countryIndex = getCountryIfExists(country);
 
                     int cityIndex = getCityIfExists(city, countryIndex);
@@ -167,7 +169,7 @@ namespace C969_Appointment_Mangement_System
             countryInsertCommand.ExecuteNonQuery();
             return countryIndex;
         }
-
+        // closes and reloads the main form
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
