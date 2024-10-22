@@ -31,12 +31,15 @@
             this.appointmentsDGV = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.CustomerDGV = new System.Windows.Forms.DataGridView();
+            this.customerDGV = new System.Windows.Forms.DataGridView();
             this.addCustomerBtn = new System.Windows.Forms.Button();
             this.updateCustomerBtn = new System.Windows.Forms.Button();
             this.deleteCustomerBtn = new System.Windows.Forms.Button();
+            this.deleteAppointmentBtn = new System.Windows.Forms.Button();
+            this.updateAppointmentBtn = new System.Windows.Forms.Button();
+            this.addAppointmentBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // appointmentsDGV
@@ -67,13 +70,13 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Customers";
             // 
-            // CustomerDGV
+            // customerDGV
             // 
-            this.CustomerDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CustomerDGV.Location = new System.Drawing.Point(896, 49);
-            this.CustomerDGV.Name = "CustomerDGV";
-            this.CustomerDGV.Size = new System.Drawing.Size(632, 256);
-            this.CustomerDGV.TabIndex = 2;
+            this.customerDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.customerDGV.Location = new System.Drawing.Point(896, 49);
+            this.customerDGV.Name = "customerDGV";
+            this.customerDGV.Size = new System.Drawing.Size(632, 256);
+            this.customerDGV.TabIndex = 2;
             // 
             // addCustomerBtn
             // 
@@ -105,22 +108,54 @@
             this.deleteCustomerBtn.UseVisualStyleBackColor = true;
             this.deleteCustomerBtn.Click += new System.EventHandler(this.deleteCustomerBtn_Click);
             // 
+            // deleteAppointmentBtn
+            // 
+            this.deleteAppointmentBtn.Location = new System.Drawing.Point(650, 311);
+            this.deleteAppointmentBtn.Name = "deleteAppointmentBtn";
+            this.deleteAppointmentBtn.Size = new System.Drawing.Size(112, 23);
+            this.deleteAppointmentBtn.TabIndex = 11;
+            this.deleteAppointmentBtn.Text = "Delete Appointment";
+            this.deleteAppointmentBtn.UseVisualStyleBackColor = true;
+            this.deleteAppointmentBtn.Click += new System.EventHandler(this.deleteAppointmentBtn_Click);
+            // 
+            // updateAppointmentBtn
+            // 
+            this.updateAppointmentBtn.Location = new System.Drawing.Point(525, 311);
+            this.updateAppointmentBtn.Name = "updateAppointmentBtn";
+            this.updateAppointmentBtn.Size = new System.Drawing.Size(119, 23);
+            this.updateAppointmentBtn.TabIndex = 10;
+            this.updateAppointmentBtn.Text = "Update Appointment";
+            this.updateAppointmentBtn.UseVisualStyleBackColor = true;
+            // 
+            // addAppointmentBtn
+            // 
+            this.addAppointmentBtn.Location = new System.Drawing.Point(413, 311);
+            this.addAppointmentBtn.Name = "addAppointmentBtn";
+            this.addAppointmentBtn.Size = new System.Drawing.Size(106, 23);
+            this.addAppointmentBtn.TabIndex = 9;
+            this.addAppointmentBtn.Text = "Add Appointment";
+            this.addAppointmentBtn.UseVisualStyleBackColor = true;
+            this.addAppointmentBtn.Click += new System.EventHandler(this.addAppointmentBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 693);
+            this.Controls.Add(this.deleteAppointmentBtn);
+            this.Controls.Add(this.updateAppointmentBtn);
+            this.Controls.Add(this.addAppointmentBtn);
             this.Controls.Add(this.deleteCustomerBtn);
             this.Controls.Add(this.updateCustomerBtn);
             this.Controls.Add(this.addCustomerBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.CustomerDGV);
+            this.Controls.Add(this.customerDGV);
             this.Controls.Add(this.appointmentsDGV);
             this.Name = "MainForm";
             this.Text = "MainForm";
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,9 +166,12 @@
         private System.Windows.Forms.DataGridView appointmentsDGV;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView CustomerDGV;
+        private System.Windows.Forms.DataGridView customerDGV;
         private System.Windows.Forms.Button addCustomerBtn;
         private System.Windows.Forms.Button updateCustomerBtn;
         private System.Windows.Forms.Button deleteCustomerBtn;
+        private System.Windows.Forms.Button deleteAppointmentBtn;
+        private System.Windows.Forms.Button updateAppointmentBtn;
+        private System.Windows.Forms.Button addAppointmentBtn;
     }
 }

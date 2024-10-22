@@ -28,9 +28,9 @@ namespace C969_Appointment_Mangement_System
         // populates the appointment table
         private void populateAppointmentTable()
         {
-            cmd = new MySqlCommand("SELECT appointmentId AS ID, customer.customerName AS Customer, user.userName AS User, title AS Title, type AS Type, appointment.description AS Description " +
-                                    "FROM appointment JOIN Customer ON appointment.customerID = customer.customerId " +
-                                                     "JOIN User ON appointment.userId = user.userId;", conn);
+            cmd = new MySqlCommand("SELECT appointmentId AS ID, customer.customerName AS Customer, user.userName AS User, title AS Title, type AS Type " +
+                                        "FROM appointment JOIN Customer ON appointment.customerID = customer.customerId " +
+                                                         "JOIN User ON appointment.userId = user.userId ORDER BY ID ASC;", conn);
             reader = cmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -54,7 +54,7 @@ namespace C969_Appointment_Mangement_System
             {
                 var custTable = new BindingSource();
                 custTable.DataSource = reader;
-                CustomerDGV.DataSource = custTable;
+                customerDGV.DataSource = custTable;
             }
             reader.Close();
         }
@@ -68,14 +68,14 @@ namespace C969_Appointment_Mangement_System
         // opens the update customer form with the information prefilled in textboxes for selected customer
         private void updateCustomerBtn_Click(object sender, EventArgs e)
         {
-            string customerId = CustomerDGV.CurrentRow.Cells[0].Value.ToString();
-            string name = CustomerDGV.CurrentRow.Cells[1].Value.ToString();
-            string address = CustomerDGV.CurrentRow.Cells[2].Value.ToString();
-            string phone = CustomerDGV.CurrentRow.Cells[3].Value.ToString();
-            string city = CustomerDGV.CurrentRow.Cells[4].Value.ToString();
-            string country = CustomerDGV.CurrentRow.Cells[5].Value.ToString();
+            string customerId = customerDGV.CurrentRow.Cells[0].Value.ToString();
+            string name = customerDGV.CurrentRow.Cells[1].Value.ToString();
+            string address = customerDGV.CurrentRow.Cells[2].Value.ToString();
+            string phone = customerDGV.CurrentRow.Cells[3].Value.ToString();
+            string city = customerDGV.CurrentRow.Cells[4].Value.ToString();
+            string country = customerDGV.CurrentRow.Cells[5].Value.ToString();
 
-            if (CustomerDGV.SelectedRows.Count == 0)
+            if (customerDGV.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a customer you would like to update information for.");
             }
@@ -89,7 +89,7 @@ namespace C969_Appointment_Mangement_System
         // deletes the customer selected
         private void deleteCustomerBtn_Click(object sender, EventArgs e)
         {
-            if (CustomerDGV.SelectedRows.Count == 0)
+            if (customerDGV.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a customer from the table to delete.");
             }
@@ -97,12 +97,12 @@ namespace C969_Appointment_Mangement_System
             {
                 try
                 {
-                    int customerId = (int)CustomerDGV.SelectedRows[0].Cells[0].Value;
-                    string deleteQuery = $"DELETE FROM customer WHERE customerId = {customerId}";
+                    int customerId = (int)customerDGV.SelectedRows[0].Cells[0].Value;
+                    string deleteCustomer = $"DELETE FROM customer WHERE customerId = {customerId}";
                     DialogResult confirmation = MessageBox.Show("Are you sure you want to delete this customer?", "Delete Customer?", MessageBoxButtons.YesNo);
                     if ( confirmation == DialogResult.Yes)
                     {
-                        cmd = new MySqlCommand(deleteQuery, conn);
+                        cmd = new MySqlCommand(deleteCustomer, conn);
                         cmd.Prepare();
                         cmd.ExecuteNonQuery();
                         populateCustomerTable();
@@ -113,6 +113,40 @@ namespace C969_Appointment_Mangement_System
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+        private void deleteAppointmentBtn_Click(object sender, EventArgs e)
+        {
+            if (appointmentsDGV.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an appointment to from the table to delete.");
+            }
+            else
+            {
+                try
+                {
+                    int apptId = (int)appointmentsDGV.SelectedRows[0].Cells[0].Value;
+                    string deleteAppointment = $"DELETE FROM appointment WHERE appointmentId = {apptId}";
+                    DialogResult confirmation = MessageBox.Show("Are you sure you want to delete this appointment?", "Delete Appointment?", MessageBoxButtons.YesNo);
+                    if (confirmation == DialogResult.Yes)
+                    {
+                        cmd = new MySqlCommand(deleteAppointment, conn);
+                        cmd.Prepare(); 
+                        cmd.ExecuteNonQuery();
+                        populateAppointmentTable();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void addAppointmentBtn_Click(object sender, EventArgs e)
+        {
+            AddAppointmentForm addForm = new AddAppointmentForm();
+            addForm.Show();
+            this.Close();
         }
 
     }
