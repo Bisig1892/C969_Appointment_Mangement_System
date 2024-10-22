@@ -53,7 +53,7 @@
             this.label1.Location = new System.Drawing.Point(36, 95);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 2;
             this.label1.Text = "User Id";
             // 
             // label2
@@ -62,7 +62,7 @@
             this.label2.Location = new System.Drawing.Point(14, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 4;
             this.label2.Text = "Customer Id";
             // 
             // label3
@@ -71,7 +71,7 @@
             this.label3.Location = new System.Drawing.Point(46, 219);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 8;
             this.label3.Text = "Type";
             // 
             // label4
@@ -80,7 +80,7 @@
             this.label4.Location = new System.Drawing.Point(290, 179);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 13);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 12;
             this.label4.Text = "Start";
             // 
             // label5
@@ -89,7 +89,7 @@
             this.label5.Location = new System.Drawing.Point(293, 216);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(26, 13);
-            this.label5.TabIndex = 4;
+            this.label5.TabIndex = 14;
             this.label5.Text = "End";
             // 
             // label6
@@ -98,7 +98,7 @@
             this.label6.Location = new System.Drawing.Point(291, 137);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 13);
-            this.label6.TabIndex = 5;
+            this.label6.TabIndex = 10;
             this.label6.Text = "Date";
             // 
             // label7
@@ -115,7 +115,7 @@
             this.typeText.Location = new System.Drawing.Point(83, 212);
             this.typeText.Name = "typeText";
             this.typeText.Size = new System.Drawing.Size(199, 20);
-            this.typeText.TabIndex = 7;
+            this.typeText.TabIndex = 9;
             // 
             // userIdCB
             // 
@@ -123,7 +123,7 @@
             this.userIdCB.Location = new System.Drawing.Point(83, 87);
             this.userIdCB.Name = "userIdCB";
             this.userIdCB.Size = new System.Drawing.Size(96, 21);
-            this.userIdCB.TabIndex = 8;
+            this.userIdCB.TabIndex = 3;
             // 
             // CustomerIdCB
             // 
@@ -131,38 +131,44 @@
             this.CustomerIdCB.Location = new System.Drawing.Point(83, 134);
             this.CustomerIdCB.Name = "CustomerIdCB";
             this.CustomerIdCB.Size = new System.Drawing.Size(96, 21);
-            this.CustomerIdCB.TabIndex = 9;
+            this.CustomerIdCB.TabIndex = 5;
             // 
             // titleText
             // 
             this.titleText.Location = new System.Drawing.Point(83, 171);
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(199, 20);
-            this.titleText.TabIndex = 10;
+            this.titleText.TabIndex = 7;
             // 
             // DateDTP
             // 
-            this.DateDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateDTP.CustomFormat = "MM-dd-yyyy";
+            this.DateDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DateDTP.Location = new System.Drawing.Point(327, 131);
+            this.DateDTP.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
             this.DateDTP.Name = "DateDTP";
             this.DateDTP.Size = new System.Drawing.Size(200, 20);
             this.DateDTP.TabIndex = 11;
             // 
             // startDTP
             // 
+            this.startDTP.CustomFormat = "";
             this.startDTP.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.startDTP.Location = new System.Drawing.Point(327, 171);
             this.startDTP.Name = "startDTP";
+            this.startDTP.ShowUpDown = true;
             this.startDTP.Size = new System.Drawing.Size(199, 20);
-            this.startDTP.TabIndex = 12;
+            this.startDTP.TabIndex = 13;
             // 
             // endDTP
             // 
+            this.endDTP.CustomFormat = "HH:mm";
             this.endDTP.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.endDTP.Location = new System.Drawing.Point(327, 210);
             this.endDTP.Name = "endDTP";
+            this.endDTP.ShowUpDown = true;
             this.endDTP.Size = new System.Drawing.Size(200, 20);
-            this.endDTP.TabIndex = 13;
+            this.endDTP.TabIndex = 15;
             // 
             // label8
             // 
@@ -171,7 +177,7 @@
             this.label8.Location = new System.Drawing.Point(17, 30);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(172, 24);
-            this.label8.TabIndex = 14;
+            this.label8.TabIndex = 1;
             this.label8.Text = "Add Appointment";
             // 
             // addAppointmentBtn
@@ -179,18 +185,20 @@
             this.addAppointmentBtn.Location = new System.Drawing.Point(334, 269);
             this.addAppointmentBtn.Name = "addAppointmentBtn";
             this.addAppointmentBtn.Size = new System.Drawing.Size(105, 23);
-            this.addAppointmentBtn.TabIndex = 15;
+            this.addAppointmentBtn.TabIndex = 16;
             this.addAppointmentBtn.Text = "Add Appointment";
             this.addAppointmentBtn.UseVisualStyleBackColor = true;
+            this.addAppointmentBtn.Click += new System.EventHandler(this.addAppointmentBtn_Click);
             // 
             // closeBtn
             // 
             this.closeBtn.Location = new System.Drawing.Point(451, 269);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
-            this.closeBtn.TabIndex = 16;
+            this.closeBtn.TabIndex = 17;
             this.closeBtn.Text = "Close";
             this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
             // AddAppointmentForm
             // 
