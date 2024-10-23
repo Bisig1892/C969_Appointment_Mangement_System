@@ -32,6 +32,10 @@ namespace C969_Appointment_Mangement_System
             populateUserCB();
             populateCustomerCB();
 
+            // sets default selection of the comboboxes to the first userId and customerId in the database
+            CustomerIdCB.SelectedIndex = 0;
+            userIdCB.SelectedIndex = 0;
+
         }
 
         private void addAppointmentBtn_Click(object sender, EventArgs e)
@@ -56,7 +60,44 @@ namespace C969_Appointment_Mangement_System
             string startUTC = tempStartUTC.ToString("yyyy-MM-dd HH:mm:ss");
             string endUTC = tempEndUTC.ToString("yyyy-MM-dd HH:mm:ss");
 
+            bool allFieldsFilledOut()
+            {
+                
+                if (string.IsNullOrWhiteSpace(apptTitle) || string.IsNullOrWhiteSpace(apptType))
+                {
+                    MessageBox.Show("Please make sure all text fields are filled out.");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
 
+            }
+
+            bool checkBusinessHours()
+            {
+                if (DateTime.Parse(startTime) >= DateTime.Parse(endTime))
+                {
+                    MessageBox.Show("Please make sure your appointment start time is prior to the appointment end time.");
+                    return false;
+                }
+                else if (DateDTP.Value.DayOfWeek == DayOfWeek.Saturday || DateDTP.Value.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    MessageBox.Show("Business days are Monday - Friday. \nPlease pick a different date to schedule your appointment.");
+                    return false;
+                }
+                else if ((DateTime.Parse(startDTP.Value.ToUniversalTime().ToString("HH:mm")) < DateTime.Parse("14:00")) || (DateTime.Parse(endDTP.Value.ToUniversalTime().ToString("HH:mm")) > DateTime.Parse("22:00")))
+                {
+                    MessageBox.Show("Please pick an start and end time between 9:00a.m. - 5:00p.m. EST");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
 
             bool apptOverlap()
             {
@@ -84,32 +125,38 @@ namespace C969_Appointment_Mangement_System
                 }
                 return result;
             }
-            
-            // check within business hours
             // make sure text fields are filled out
-            
-            if (apptOverlap() == false)
+            if (allFieldsFilledOut() == true)
             {
-                try
+                // check within business hours
+                if (checkBusinessHours() == true)
                 {
-                    string getAppointmentIndex = "SELECT appointmentId FROM appointment ORDER BY appointmentId DESC LIMIT 1";
-                    cmd = new MySqlCommand(getAppointmentIndex, conn);
-                    int appointmentIndex = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
+                    // checks to see if appointments will overlap
+                    if (apptOverlap() == false)
+                    {
+                        try
+                        {
+                            string getAppointmentIndex = "SELECT appointmentId FROM appointment ORDER BY appointmentId DESC LIMIT 1";
+                            cmd = new MySqlCommand(getAppointmentIndex, conn);
+                            int appointmentIndex = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
 
-                    string appointmentInsert = $"INSERT INTO appointment VALUES({appointmentIndex}, {customerId}, {userId}, '{apptTitle}'," +
-                                               $"'not needed', 'not needed', 'not needed', '{apptType}', 'not needed', '{startUTC}', '{endUTC}', UTC_TIMESTAMP(), 'not needed', UTC_TIMESTAMP(), '')";
-                    cmd = new MySqlCommand(appointmentInsert, conn);
-                    cmd.Prepare();
-                    cmd.ExecuteNonQuery();
-                    this.Close();
-                    MainForm main = new MainForm();
-                    main.Show();
+                            string appointmentInsert = $"INSERT INTO appointment VALUES({appointmentIndex}, {customerId}, {userId}, '{apptTitle}'," +
+                                                       $"'not needed', 'not needed', 'not needed', '{apptType}', 'not needed', '{startUTC}', '{endUTC}', UTC_TIMESTAMP(), 'not needed', UTC_TIMESTAMP(), '')";
+                            cmd = new MySqlCommand(appointmentInsert, conn);
+                            cmd.Prepare();
+                            cmd.ExecuteNonQuery();
+                            this.Close();
+                            MainForm main = new MainForm();
+                            main.Show();
 
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+
             }
         }
 
