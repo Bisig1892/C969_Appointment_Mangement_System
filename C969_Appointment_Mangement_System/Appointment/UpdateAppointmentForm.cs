@@ -16,6 +16,7 @@ namespace C969_Appointment_Mangement_System.Appointment
     {
         MySqlCommand cmd;
         MySqlConnection conn = DBConnection.conn;
+        MySqlDataReader reader;
 
         string apptId;
 
@@ -23,16 +24,26 @@ namespace C969_Appointment_Mangement_System.Appointment
         {
             InitializeComponent();
 
+
             apptId = appointmentId;
             CustomerIdCB.Text = customerId;
             userIdCB.Text = userId;
             titleText.Text = title.Trim();
             typeText.Text = type.Trim();
-            
-            string tempDate = date; 
+            string tempDate = date;
             string tempStart = startTime;
             string tempEnd = endTime;
 
+            CustomerIdCB.Enabled = false;
+            populateUserCB();
+            formatDateTimeFields(tempDate, tempStart, tempEnd);
+        
+
+
+        }
+
+        private void formatDateTimeFields(string tempDate, string tempStart, string tempEnd)
+        {
             DateTime apptDate = DateTime.Parse(tempDate);
             DateTime apptStart = DateTime.Parse(tempStart);
             DateTime apptEnd = DateTime.Parse(tempEnd);
@@ -40,8 +51,17 @@ namespace C969_Appointment_Mangement_System.Appointment
             dateDTP.Text = apptDate.ToString("MM-dd-yyyy");
             startDTP.Text = apptStart.ToString("hh:mm:ss tt");
             endDTP.Text = apptEnd.ToString("hh:mm:ss tt");
+        }
 
-
+        private void populateUserCB()
+        {
+            cmd = new MySqlCommand("SELECT userId FROM user ORDER BY userId", conn);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                userIdCB.Items.Add(reader[0]);
+            }
+            reader.Close();
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
