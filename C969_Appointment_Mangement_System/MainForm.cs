@@ -30,10 +30,11 @@ namespace C969_Appointment_Mangement_System
         // populates the appointment table
         private void populateAppointmentTable()
         {
-            cmd = new MySqlCommand("SELECT appointmentId AS ID, customer.customerName AS Customer, user.userName AS User, title AS Title, type AS Type, " +
+            cmd = new MySqlCommand("SELECT appointmentId AS ID, customer.customerId AS 'Customer ID', customer.customerName AS Customer, user.userId AS 'User ID', user.userName AS User, title AS Title, type AS Type, " +
                                         "appointment.start AS Date, appointment.start AS 'Start Time', appointment.end AS 'End Time'" +
                                         "FROM appointment JOIN Customer ON appointment.customerID = customer.customerId " +
                                                          "JOIN User ON appointment.userId = user.userId ORDER BY Date ASC;", conn);
+
 
             MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -46,10 +47,14 @@ namespace C969_Appointment_Mangement_System
                 dt.Rows[i]["Start Time"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["Start Time"], TimeZoneInfo.Local).ToString();
                 dt.Rows[i]["End Time"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["End Time"], TimeZoneInfo.Local).ToString();
 
-                appointmentsDGV.Columns[5].DefaultCellStyle.Format = "MM'-'dd'-'yyyy";
-                appointmentsDGV.Columns[6].DefaultCellStyle.Format = "hh':'mm tt";
-                appointmentsDGV.Columns[7].DefaultCellStyle.Format = "hh':'mm tt";
+                appointmentsDGV.Columns[7].DefaultCellStyle.Format = "MM'-'dd'-'yyyy";
+                appointmentsDGV.Columns[8].DefaultCellStyle.Format = "hh':'mm tt";
+                appointmentsDGV.Columns[9].DefaultCellStyle.Format = "hh':'mm tt";
             }
+
+            appointmentsDGV.Columns["Customer ID"].Visible = false;
+            appointmentsDGV.Columns["User ID"].Visible = false;
+
 
 
         }
@@ -138,12 +143,12 @@ namespace C969_Appointment_Mangement_System
         {
             string appointmentId = appointmentsDGV.CurrentRow.Cells[0].Value.ToString();
             string customerId = appointmentsDGV.CurrentRow.Cells[1].Value.ToString();
-            string userId = appointmentsDGV.CurrentRow.Cells[2].Value.ToString();
-            string title = appointmentsDGV.CurrentRow.Cells[3].Value.ToString();
-            string type = appointmentsDGV.CurrentRow.Cells[4].Value.ToString();
-            string date = appointmentsDGV.CurrentRow.Cells[5].Value.ToString();
-            string startTime = appointmentsDGV.CurrentRow.Cells[6].Value.ToString();
-            string endTime = appointmentsDGV.CurrentRow.Cells[7].Value.ToString();
+            string userId = appointmentsDGV.CurrentRow.Cells[3].Value.ToString();
+            string title = appointmentsDGV.CurrentRow.Cells[5].Value.ToString();
+            string type = appointmentsDGV.CurrentRow.Cells[6].Value.ToString();
+            string date = appointmentsDGV.CurrentRow.Cells[7].Value.ToString();
+            string startTime = appointmentsDGV.CurrentRow.Cells[8].Value.ToString();
+            string endTime = appointmentsDGV.CurrentRow.Cells[9].Value.ToString();
 
             if (appointmentsDGV.SelectedRows.Count == 0)
             {
