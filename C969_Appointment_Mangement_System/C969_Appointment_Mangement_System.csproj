@@ -104,11 +104,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAppointmentForm.cs">
+    <Compile Include="Appointment\AddAppointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddAppointmentForm.Designer.cs">
+    <Compile Include="Appointment\AddAppointmentForm.Designer.cs">
       <DependentUpon>AddAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Appointment\UpdateAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appointment\UpdateAppointmentForm.Designer.cs">
+      <DependentUpon>UpdateAppointmentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Customer\AddCustomerForm.cs">
       <SubType>Form</SubType>
@@ -144,8 +150,11 @@
     <Compile Include="Customer\UpdateCustomerForm.Designer.cs">
       <DependentUpon>UpdateCustomerForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddAppointmentForm.resx">
+    <EmbeddedResource Include="Appointment\AddAppointmentForm.resx">
       <DependentUpon>AddAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Appointment\UpdateAppointmentForm.resx">
+      <DependentUpon>UpdateAppointmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\AddCustomerForm.resx">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>

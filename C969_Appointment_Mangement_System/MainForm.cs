@@ -1,10 +1,12 @@
-﻿using C969_Appointment_Mangement_System.Database;
+﻿using C969_Appointment_Mangement_System.Appointment;
+using C969_Appointment_Mangement_System.Database;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,19 +30,30 @@ namespace C969_Appointment_Mangement_System
         // populates the appointment table
         private void populateAppointmentTable()
         {
-            cmd = new MySqlCommand("SELECT appointmentId AS ID, customer.customerName AS Customer, user.userName AS User, title AS Title, type AS Type " +
+            cmd = new MySqlCommand("SELECT appointmentId AS ID, customer.customerName AS Customer, user.userName AS User, title AS Title, type AS Type, " +
+                                        "appointment.start AS Date, appointment.start AS 'Start Time', appointment.end AS 'End Time'" +
                                         "FROM appointment JOIN Customer ON appointment.customerID = customer.customerId " +
-                                                         "JOIN User ON appointment.userId = user.userId ORDER BY ID ASC;", conn);
-            reader = cmd.ExecuteReader();
+                                                         "JOIN User ON appointment.userId = user.userId ORDER BY Date ASC;", conn);
 
-            if (reader.HasRows)
+            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adp.Fill(dt);
+            appointmentsDGV.DataSource = dt;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                var appTable = new BindingSource();
-                appTable.DataSource = reader;
-                appointmentsDGV.DataSource = appTable;
+                dt.Rows[i]["Date"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["Date"], TimeZoneInfo.Local).ToString();
+                dt.Rows[i]["Start Time"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["Start Time"], TimeZoneInfo.Local).ToString();
+                dt.Rows[i]["End Time"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["End Time"], TimeZoneInfo.Local).ToString();
+
+                appointmentsDGV.Columns[5].DefaultCellStyle.Format = "MM'-'dd'-'yyyy";
+                appointmentsDGV.Columns[6].DefaultCellStyle.Format = "hh':'mm tt";
+                appointmentsDGV.Columns[7].DefaultCellStyle.Format = "hh':'mm tt";
             }
-            reader.Close();
+
+
         }
+
         // populates the customer table
         private void populateCustomerTable()
         {
@@ -114,6 +127,36 @@ namespace C969_Appointment_Mangement_System
                 }
             }
         }
+        private void addAppointmentBtn_Click(object sender, EventArgs e)
+        {
+            AddAppointmentForm addForm = new AddAppointmentForm();
+            addForm.Show();
+            this.Close();
+        }
+
+        private void updateAppointmentBtn_Click(object sender, EventArgs e)
+        {
+            string appointmentId = appointmentsDGV.CurrentRow.Cells[0].Value.ToString();
+            string customerId = appointmentsDGV.CurrentRow.Cells[1].Value.ToString();
+            string userId = appointmentsDGV.CurrentRow.Cells[2].Value.ToString();
+            string title = appointmentsDGV.CurrentRow.Cells[3].Value.ToString();
+            string type = appointmentsDGV.CurrentRow.Cells[4].Value.ToString();
+            string date = appointmentsDGV.CurrentRow.Cells[5].Value.ToString();
+            string startTime = appointmentsDGV.CurrentRow.Cells[6].Value.ToString();
+            string endTime = appointmentsDGV.CurrentRow.Cells[7].Value.ToString();
+
+            if (appointmentsDGV.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an appointment to update.");
+            }
+            else
+            {
+                UpdateAppointmentForm updateFrom = new UpdateAppointmentForm(appointmentId, customerId, userId, title, type, date, startTime, endTime);
+                updateFrom.Show();
+                this.Close();
+            }
+        }
+
         private void deleteAppointmentBtn_Click(object sender, EventArgs e)
         {
             if (appointmentsDGV.SelectedRows.Count == 0)
@@ -141,13 +184,5 @@ namespace C969_Appointment_Mangement_System
                 }
             }
         }
-
-        private void addAppointmentBtn_Click(object sender, EventArgs e)
-        {
-            AddAppointmentForm addForm = new AddAppointmentForm();
-            addForm.Show();
-            this.Close();
-        }
-
     }
 }

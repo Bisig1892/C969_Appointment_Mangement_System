@@ -47,7 +47,7 @@
             this.appointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.appointmentsDGV.Location = new System.Drawing.Point(12, 49);
             this.appointmentsDGV.Name = "appointmentsDGV";
-            this.appointmentsDGV.Size = new System.Drawing.Size(750, 256);
+            this.appointmentsDGV.Size = new System.Drawing.Size(829, 256);
             this.appointmentsDGV.TabIndex = 0;
             // 
             // label1
@@ -110,7 +110,7 @@
             // 
             // deleteAppointmentBtn
             // 
-            this.deleteAppointmentBtn.Location = new System.Drawing.Point(650, 311);
+            this.deleteAppointmentBtn.Location = new System.Drawing.Point(729, 311);
             this.deleteAppointmentBtn.Name = "deleteAppointmentBtn";
             this.deleteAppointmentBtn.Size = new System.Drawing.Size(112, 23);
             this.deleteAppointmentBtn.TabIndex = 11;
@@ -120,16 +120,17 @@
             // 
             // updateAppointmentBtn
             // 
-            this.updateAppointmentBtn.Location = new System.Drawing.Point(525, 311);
+            this.updateAppointmentBtn.Location = new System.Drawing.Point(604, 311);
             this.updateAppointmentBtn.Name = "updateAppointmentBtn";
             this.updateAppointmentBtn.Size = new System.Drawing.Size(119, 23);
             this.updateAppointmentBtn.TabIndex = 10;
             this.updateAppointmentBtn.Text = "Update Appointment";
             this.updateAppointmentBtn.UseVisualStyleBackColor = true;
+            this.updateAppointmentBtn.Click += new System.EventHandler(this.updateAppointmentBtn_Click);
             // 
             // addAppointmentBtn
             // 
-            this.addAppointmentBtn.Location = new System.Drawing.Point(413, 311);
+            this.addAppointmentBtn.Location = new System.Drawing.Point(492, 311);
             this.addAppointmentBtn.Name = "addAppointmentBtn";
             this.addAppointmentBtn.Size = new System.Drawing.Size(106, 23);
             this.addAppointmentBtn.TabIndex = 9;
