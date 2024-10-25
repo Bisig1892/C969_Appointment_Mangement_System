@@ -39,7 +39,7 @@
             this.userIdCB = new System.Windows.Forms.ComboBox();
             this.CustomerIdCB = new System.Windows.Forms.ComboBox();
             this.titleText = new System.Windows.Forms.TextBox();
-            this.DateDTP = new System.Windows.Forms.DateTimePicker();
+            this.dateDTP = new System.Windows.Forms.DateTimePicker();
             this.startDTP = new System.Windows.Forms.DateTimePicker();
             this.endDTP = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -140,15 +140,15 @@
             this.titleText.Size = new System.Drawing.Size(199, 20);
             this.titleText.TabIndex = 7;
             // 
-            // DateDTP
+            // dateDTP
             // 
-            this.DateDTP.CustomFormat = "MM-dd-yyyy";
-            this.DateDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateDTP.Location = new System.Drawing.Point(327, 131);
-            this.DateDTP.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
-            this.DateDTP.Name = "DateDTP";
-            this.DateDTP.Size = new System.Drawing.Size(200, 20);
-            this.DateDTP.TabIndex = 11;
+            this.dateDTP.CustomFormat = "MM-dd-yyyy";
+            this.dateDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateDTP.Location = new System.Drawing.Point(327, 131);
+            this.dateDTP.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
+            this.dateDTP.Name = "dateDTP";
+            this.dateDTP.Size = new System.Drawing.Size(200, 20);
+            this.dateDTP.TabIndex = 11;
             // 
             // startDTP
             // 
@@ -210,7 +210,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.endDTP);
             this.Controls.Add(this.startDTP);
-            this.Controls.Add(this.DateDTP);
+            this.Controls.Add(this.dateDTP);
             this.Controls.Add(this.titleText);
             this.Controls.Add(this.CustomerIdCB);
             this.Controls.Add(this.userIdCB);
@@ -242,7 +242,7 @@
         private System.Windows.Forms.ComboBox userIdCB;
         private System.Windows.Forms.ComboBox CustomerIdCB;
         private System.Windows.Forms.TextBox titleText;
-        private System.Windows.Forms.DateTimePicker DateDTP;
+        private System.Windows.Forms.DateTimePicker dateDTP;
         private System.Windows.Forms.DateTimePicker startDTP;
         private System.Windows.Forms.DateTimePicker endDTP;
         private System.Windows.Forms.Label label8;

@@ -65,6 +65,7 @@
             this.updateAppointmentBtn.TabIndex = 33;
             this.updateAppointmentBtn.Text = "Update Appointment";
             this.updateAppointmentBtn.UseVisualStyleBackColor = true;
+            this.updateAppointmentBtn.Click += new System.EventHandler(this.updateAppointmentBtn_Click);
             // 
             // label8
             // 

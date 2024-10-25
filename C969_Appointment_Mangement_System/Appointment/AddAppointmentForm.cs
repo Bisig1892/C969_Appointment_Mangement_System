@@ -26,7 +26,7 @@ namespace C969_Appointment_Mangement_System
             InitializeComponent();
             startDTP.CustomFormat = "HH:mm";
             endDTP.CustomFormat = "HH:mm";
-            DateDTP.Value = DateTime.Now.Date;
+            dateDTP.Value = DateTime.Now.Date;
 
             // Gets the ids for users and customers and populates them into the corralating combo boxes
             populateUserCB();
@@ -45,7 +45,7 @@ namespace C969_Appointment_Mangement_System
             string customerId = CustomerIdCB.Text;
             string apptTitle = titleText.Text;
             string apptType = typeText.Text;
-            string date = DateDTP.Value.ToString("yyyy-MM-dd");
+            string date = dateDTP.Value.ToString("yyyy-MM-dd");
             string startTime = startDTP.Value.ToString("HH:mm");
             string endTime = endDTP.Value.ToString("HH:mm");
 
@@ -82,7 +82,7 @@ namespace C969_Appointment_Mangement_System
                     MessageBox.Show("Please make sure your appointment start time is prior to the appointment end time.");
                     return false;
                 }
-                else if (DateDTP.Value.DayOfWeek == DayOfWeek.Saturday || DateDTP.Value.DayOfWeek == DayOfWeek.Sunday)
+                else if (dateDTP.Value.DayOfWeek == DayOfWeek.Saturday || dateDTP.Value.DayOfWeek == DayOfWeek.Sunday)
                 {
                     MessageBox.Show("Business days are Monday - Friday. \nPlease pick a different date to schedule your appointment.");
                     return false;
