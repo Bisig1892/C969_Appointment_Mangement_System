@@ -150,6 +150,12 @@
     <Compile Include="Customer\UpdateCustomerForm.Designer.cs">
       <DependentUpon>UpdateCustomerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\MonthlyApptTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\MonthlyApptTypeForm.Designer.cs">
+      <DependentUpon>MonthlyApptTypeForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Appointment\AddAppointmentForm.resx">
       <DependentUpon>AddAppointmentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +182,9 @@
     </Compile>
     <EmbeddedResource Include="Customer\UpdateCustomerForm.resx">
       <DependentUpon>UpdateCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MonthlyApptTypeForm.resx">
+      <DependentUpon>MonthlyApptTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

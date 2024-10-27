@@ -1,5 +1,6 @@
 ﻿using C969_Appointment_Mangement_System.Appointment;
 using C969_Appointment_Mangement_System.Database;
+using C969_Appointment_Mangement_System.Reports;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -188,6 +189,12 @@ namespace C969_Appointment_Mangement_System
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void monthlyApptBtn_Click(object sender, EventArgs e)
+        {
+            MonthlyApptTypeForm monthlyApptForm = new MonthlyApptTypeForm();
+            monthlyApptForm.Show();
         }
     }
 }
