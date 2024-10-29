@@ -199,7 +199,8 @@ namespace C969_Appointment_Mangement_System
 
         private void userScheduleBtn_Click(object sender, EventArgs e)
         {
-             
+            UserScheduleReportForm userScheduleReport = new UserScheduleReportForm();
+            userScheduleReport.Show();
         }
 
         private void daySchedSubmitBtn_Click(object sender, EventArgs e)

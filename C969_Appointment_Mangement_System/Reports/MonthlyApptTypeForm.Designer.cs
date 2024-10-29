@@ -45,7 +45,7 @@
             // 
             // closeBtn
             // 
-            this.closeBtn.Location = new System.Drawing.Point(399, 444);
+            this.closeBtn.Location = new System.Drawing.Point(255, 444);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(121, 23);
             this.closeBtn.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             this.reportText.Location = new System.Drawing.Point(16, 56);
             this.reportText.Name = "reportText";
-            this.reportText.Size = new System.Drawing.Size(504, 382);
+            this.reportText.Size = new System.Drawing.Size(360, 382);
             this.reportText.TabIndex = 2;
             this.reportText.Text = "";
             // 
@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 509);
+            this.ClientSize = new System.Drawing.Size(397, 509);
             this.Controls.Add(this.reportText);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.label1);

@@ -27,7 +27,7 @@ namespace C969_Appointment_Mangement_System.Reports
             int temp = 1;
             foreach (string start in Months)
             {
-                reportText.Text = reportText.Text + start + " Tpye \r\n";
+                reportText.Text = reportText.Text + start + "\r\n";
                 string query = $"SELECT type, COUNT(*) FROM appointment WHERE month(START) = {temp++} group by type;";
                 cmd = new MySqlCommand(query, conn);
                 adp = new MySqlDataAdapter(cmd);

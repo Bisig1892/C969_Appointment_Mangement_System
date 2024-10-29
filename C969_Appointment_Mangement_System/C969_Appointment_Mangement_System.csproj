@@ -156,11 +156,11 @@
     <Compile Include="Reports\MonthlyApptTypeForm.Designer.cs">
       <DependentUpon>MonthlyApptTypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\UserScheduleReport.cs">
+    <Compile Include="Reports\UserScheduleReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\UserScheduleReport.Designer.cs">
-      <DependentUpon>UserScheduleReport.cs</DependentUpon>
+    <Compile Include="Reports\UserScheduleReportForm.Designer.cs">
+      <DependentUpon>UserScheduleReportForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Appointment\AddAppointmentForm.resx">
       <DependentUpon>AddAppointmentForm.cs</DependentUpon>
@@ -192,8 +192,8 @@
     <EmbeddedResource Include="Reports\MonthlyApptTypeForm.resx">
       <DependentUpon>MonthlyApptTypeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\UserScheduleReport.resx">
-      <DependentUpon>UserScheduleReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\UserScheduleReportForm.resx">
+      <DependentUpon>UserScheduleReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
