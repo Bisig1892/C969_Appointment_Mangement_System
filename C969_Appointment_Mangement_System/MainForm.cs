@@ -196,5 +196,39 @@ namespace C969_Appointment_Mangement_System
             MonthlyApptTypeForm monthlyApptForm = new MonthlyApptTypeForm();
             monthlyApptForm.Show();
         }
+
+        private void userScheduleBtn_Click(object sender, EventArgs e)
+        {
+             
+        }
+
+        private void daySchedSubmitBtn_Click(object sender, EventArgs e)
+        {
+            string tempDaySchedule = dayScheduleDTP.Value.ToString("yyyy-MM-dd");
+
+            cmd = new MySqlCommand($"SELECT appointmentId AS ID, customer.customerId AS 'Customer ID', customer.customerName AS Customer, user.userId AS 'User ID', user.userName AS User, title AS Title, type AS Type, " +
+                            $"appointment.start AS Date, appointment.start AS 'Start Time', appointment.end AS 'End Time'" +
+                            $"FROM appointment JOIN Customer ON appointment.customerID = customer.customerId " +
+                                             $"JOIN User ON appointment.userId = user.userId WHERE DATE(appointment.start) = '{tempDaySchedule}';", conn);
+
+            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adp.Fill(dt);
+            dayScheduleDGV.DataSource = dt;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dt.Rows[i]["Date"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["Date"], TimeZoneInfo.Local).ToString();
+                dt.Rows[i]["Start Time"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["Start Time"], TimeZoneInfo.Local).ToString();
+                dt.Rows[i]["End Time"] = TimeZoneInfo.ConvertTimeFromUtc((DateTime)dt.Rows[i]["End Time"], TimeZoneInfo.Local).ToString();
+
+                dayScheduleDGV.Columns[7].DefaultCellStyle.Format = "MM'-'dd'-'yyyy";
+                dayScheduleDGV.Columns[8].DefaultCellStyle.Format = "hh':'mm tt";
+                dayScheduleDGV.Columns[9].DefaultCellStyle.Format = "hh':'mm tt";
+            }
+
+            dayScheduleDGV.Columns["Customer ID"].Visible = false;
+            dayScheduleDGV.Columns["User ID"].Visible = false;
+        }
     }
 }
