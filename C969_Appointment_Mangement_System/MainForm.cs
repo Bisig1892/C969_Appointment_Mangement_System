@@ -231,5 +231,11 @@ namespace C969_Appointment_Mangement_System
             dayScheduleDGV.Columns["Customer ID"].Visible = false;
             dayScheduleDGV.Columns["User ID"].Visible = false;
         }
+
+        private void custApptCount_Click(object sender, EventArgs e)
+        {
+            CustomerAppointmentCountForm form = new CustomerAppointmentCountForm();
+            form.Show();
+        }
     }
 }

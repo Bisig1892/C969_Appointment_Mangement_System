@@ -45,7 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.monthlyApptBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.custApptCount = new System.Windows.Forms.Button();
             this.userScheduleBtn = new System.Windows.Forms.Button();
             this.dayScheduleDTP = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -173,7 +173,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(892, 367);
+            this.label4.Location = new System.Drawing.Point(1084, 438);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 20);
             this.label4.TabIndex = 16;
@@ -183,7 +183,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(893, 425);
+            this.label5.Location = new System.Drawing.Point(1085, 496);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(198, 16);
             this.label5.TabIndex = 17;
@@ -192,17 +192,18 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1228, 694);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1070, 618);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(28, 13);
+            this.label6.Size = new System.Drawing.Size(213, 16);
             this.label6.TabIndex = 18;
-            this.label6.Text = "Test";
+            this.label6.Text = "Customer Appointment Counts";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(893, 485);
+            this.label7.Location = new System.Drawing.Point(1174, 556);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(109, 16);
             this.label7.TabIndex = 19;
@@ -210,7 +211,7 @@
             // 
             // monthlyApptBtn
             // 
-            this.monthlyApptBtn.Location = new System.Drawing.Point(1104, 422);
+            this.monthlyApptBtn.Location = new System.Drawing.Point(1296, 493);
             this.monthlyApptBtn.Name = "monthlyApptBtn";
             this.monthlyApptBtn.Size = new System.Drawing.Size(75, 23);
             this.monthlyApptBtn.TabIndex = 20;
@@ -218,18 +219,19 @@
             this.monthlyApptBtn.UseVisualStyleBackColor = true;
             this.monthlyApptBtn.Click += new System.EventHandler(this.monthlyApptBtn_Click);
             // 
-            // button1
+            // custApptCount
             // 
-            this.button1.Location = new System.Drawing.Point(1403, 689);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Generate";
-            this.button1.UseVisualStyleBackColor = true;
+            this.custApptCount.Location = new System.Drawing.Point(1296, 615);
+            this.custApptCount.Name = "custApptCount";
+            this.custApptCount.Size = new System.Drawing.Size(75, 23);
+            this.custApptCount.TabIndex = 21;
+            this.custApptCount.Text = "Generate";
+            this.custApptCount.UseVisualStyleBackColor = true;
+            this.custApptCount.Click += new System.EventHandler(this.custApptCount_Click);
             // 
             // userScheduleBtn
             // 
-            this.userScheduleBtn.Location = new System.Drawing.Point(1104, 482);
+            this.userScheduleBtn.Location = new System.Drawing.Point(1296, 553);
             this.userScheduleBtn.Name = "userScheduleBtn";
             this.userScheduleBtn.Size = new System.Drawing.Size(75, 23);
             this.userScheduleBtn.TabIndex = 22;
@@ -274,7 +276,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dayScheduleDTP);
             this.Controls.Add(this.userScheduleBtn);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.custApptCount);
             this.Controls.Add(this.monthlyApptBtn);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -321,7 +323,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button monthlyApptBtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button custApptCount;
         private System.Windows.Forms.Button userScheduleBtn;
         private System.Windows.Forms.DateTimePicker dayScheduleDTP;
         private System.Windows.Forms.Label label8;
