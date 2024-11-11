@@ -275,10 +275,58 @@ namespace C969_Appointment_Mangement_System
             CustomerAppointmentCountForm form = new CustomerAppointmentCountForm();
             form.Show();
         }
-        //for capstone not implemented yet
-        private void searchTb_TextChanged(object sender, EventArgs e)
+        /*
+         For Capstone
+         Searches customer names column for all names that contain what is in the search bar. 
+         The enter key is also linked to the search function for this form. 
+         There are better options, but for troubleshooting and testing purposes this was set up.
+        */
+        private void searchBtn_Click(object sender, EventArgs e)
         {
+            string searchCustomer = searchTb.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(searchCustomer))
+            {
+                MessageBox.Show("Please enter a customer name before searching.");
+            }
+            else
+            {
+                try
+                {
+                    string searchQuery = $"SELECT customer.customerId AS ID, customer.customerName AS 'Customer Name', address.address AS Address, address.phone AS Phone, city.city AS City, " +
+                                                $"country.country AS Country FROM customer JOIN address ON customer.addressId = address.addressId " +
+                                                $"JOIN city ON address.cityId = city.cityId JOIN country ON city.countryId = country.countryId " +
+                                                $"WHERE customerName LIKE '%{searchCustomer}%';";
+
+                    cmd = new MySqlCommand(searchQuery, conn);
+                    DataTable tempTable = new DataTable();
+                    using (MySqlDataAdapter adp = new MySqlDataAdapter(cmd))
+                    {
+                        adp.Fill(tempTable);
+                    }
+
+                    if (tempTable.Rows.Count == 0)
+                    {
+                        MessageBox.Show($"No Customers with the name '{searchCustomer}' found.\nPlease try another name.");
+                        searchTb.Clear();
+                        populateCustomerTable();
+                    }
+                    else
+                    {
+                        customerDGV.DataSource = tempTable;
+                        searchTb.Clear();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void clearSearchResultsBtn_Click(object sender, EventArgs e)
+        {
+            populateCustomerTable();
         }
     }
 }

@@ -52,6 +52,8 @@
             this.daySchedSubmitBtn = new System.Windows.Forms.Button();
             this.searchTb = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.searchBtn = new System.Windows.Forms.Button();
+            this.clearSearchResultsBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dayScheduleDGV)).BeginInit();
@@ -156,7 +158,7 @@
             // dayScheduleDGV
             // 
             this.dayScheduleDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dayScheduleDGV.Location = new System.Drawing.Point(12, 435);
+            this.dayScheduleDGV.Location = new System.Drawing.Point(12, 425);
             this.dayScheduleDGV.Name = "dayScheduleDGV";
             this.dayScheduleDGV.Size = new System.Drawing.Size(829, 287);
             this.dayScheduleDGV.TabIndex = 14;
@@ -271,26 +273,48 @@
             // 
             // searchTb
             // 
-            this.searchTb.Location = new System.Drawing.Point(1369, 41);
+            this.searchTb.Location = new System.Drawing.Point(1204, 37);
             this.searchTb.Name = "searchTb";
             this.searchTb.Size = new System.Drawing.Size(159, 20);
             this.searchTb.TabIndex = 27;
-            this.searchTb.TextChanged += new System.EventHandler(this.searchTb_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1272, 45);
+            this.label9.Location = new System.Drawing.Point(1107, 41);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 13);
+            this.label9.Size = new System.Drawing.Size(85, 13);
             this.label9.TabIndex = 28;
-            this.label9.Text = "Search Customer:";
+            this.label9.Text = "Customer Name:";
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Location = new System.Drawing.Point(1369, 36);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(75, 23);
+            this.searchBtn.TabIndex = 29;
+            this.searchBtn.Text = "Search";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // clearSearchResultsBtn
+            // 
+            this.clearSearchResultsBtn.Location = new System.Drawing.Point(1450, 37);
+            this.clearSearchResultsBtn.Name = "clearSearchResultsBtn";
+            this.clearSearchResultsBtn.Size = new System.Drawing.Size(75, 23);
+            this.clearSearchResultsBtn.TabIndex = 30;
+            this.clearSearchResultsBtn.Text = "Clear";
+            this.clearSearchResultsBtn.UseVisualStyleBackColor = true;
+            this.clearSearchResultsBtn.Click += new System.EventHandler(this.clearSearchResultsBtn_Click);
             // 
             // MainForm
             // 
+            this.AcceptButton = this.searchBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 785);
+            this.Controls.Add(this.clearSearchResultsBtn);
+            this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.searchTb);
             this.Controls.Add(this.daySchedSubmitBtn);
@@ -351,5 +375,7 @@
         private System.Windows.Forms.Button daySchedSubmitBtn;
         private System.Windows.Forms.TextBox searchTb;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Button clearSearchResultsBtn;
     }
 }
