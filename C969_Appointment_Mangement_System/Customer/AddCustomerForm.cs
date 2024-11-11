@@ -51,7 +51,7 @@ namespace C969_Appointment_Mangement_System
 
 
 
-
+            // lamda was user here to simplify and make it easier to read a boolean check for all validation on created a new user
             Validate validate = () =>
             {
                 // checks to see if fields are empty
