@@ -50,6 +50,8 @@
             this.dayScheduleDTP = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.daySchedSubmitBtn = new System.Windows.Forms.Button();
+            this.searchTb = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dayScheduleDGV)).BeginInit();
@@ -58,7 +60,7 @@
             // appointmentsDGV
             // 
             this.appointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.appointmentsDGV.Location = new System.Drawing.Point(12, 49);
+            this.appointmentsDGV.Location = new System.Drawing.Point(12, 65);
             this.appointmentsDGV.Name = "appointmentsDGV";
             this.appointmentsDGV.Size = new System.Drawing.Size(829, 256);
             this.appointmentsDGV.TabIndex = 0;
@@ -67,7 +69,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Location = new System.Drawing.Point(12, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 20);
             this.label1.TabIndex = 3;
@@ -77,7 +79,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(892, 22);
+            this.label3.Location = new System.Drawing.Point(892, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 20);
             this.label3.TabIndex = 5;
@@ -86,14 +88,14 @@
             // customerDGV
             // 
             this.customerDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.customerDGV.Location = new System.Drawing.Point(896, 49);
+            this.customerDGV.Location = new System.Drawing.Point(896, 65);
             this.customerDGV.Name = "customerDGV";
             this.customerDGV.Size = new System.Drawing.Size(632, 256);
             this.customerDGV.TabIndex = 2;
             // 
             // addCustomerBtn
             // 
-            this.addCustomerBtn.Location = new System.Drawing.Point(1227, 311);
+            this.addCustomerBtn.Location = new System.Drawing.Point(1227, 327);
             this.addCustomerBtn.Name = "addCustomerBtn";
             this.addCustomerBtn.Size = new System.Drawing.Size(94, 23);
             this.addCustomerBtn.TabIndex = 6;
@@ -103,7 +105,7 @@
             // 
             // updateCustomerBtn
             // 
-            this.updateCustomerBtn.Location = new System.Drawing.Point(1327, 311);
+            this.updateCustomerBtn.Location = new System.Drawing.Point(1327, 327);
             this.updateCustomerBtn.Name = "updateCustomerBtn";
             this.updateCustomerBtn.Size = new System.Drawing.Size(99, 23);
             this.updateCustomerBtn.TabIndex = 7;
@@ -113,7 +115,7 @@
             // 
             // deleteCustomerBtn
             // 
-            this.deleteCustomerBtn.Location = new System.Drawing.Point(1432, 311);
+            this.deleteCustomerBtn.Location = new System.Drawing.Point(1432, 327);
             this.deleteCustomerBtn.Name = "deleteCustomerBtn";
             this.deleteCustomerBtn.Size = new System.Drawing.Size(96, 23);
             this.deleteCustomerBtn.TabIndex = 8;
@@ -123,7 +125,7 @@
             // 
             // deleteAppointmentBtn
             // 
-            this.deleteAppointmentBtn.Location = new System.Drawing.Point(729, 311);
+            this.deleteAppointmentBtn.Location = new System.Drawing.Point(729, 327);
             this.deleteAppointmentBtn.Name = "deleteAppointmentBtn";
             this.deleteAppointmentBtn.Size = new System.Drawing.Size(112, 23);
             this.deleteAppointmentBtn.TabIndex = 11;
@@ -133,7 +135,7 @@
             // 
             // updateAppointmentBtn
             // 
-            this.updateAppointmentBtn.Location = new System.Drawing.Point(604, 311);
+            this.updateAppointmentBtn.Location = new System.Drawing.Point(604, 327);
             this.updateAppointmentBtn.Name = "updateAppointmentBtn";
             this.updateAppointmentBtn.Size = new System.Drawing.Size(119, 23);
             this.updateAppointmentBtn.TabIndex = 10;
@@ -143,7 +145,7 @@
             // 
             // addAppointmentBtn
             // 
-            this.addAppointmentBtn.Location = new System.Drawing.Point(492, 311);
+            this.addAppointmentBtn.Location = new System.Drawing.Point(492, 327);
             this.addAppointmentBtn.Name = "addAppointmentBtn";
             this.addAppointmentBtn.Size = new System.Drawing.Size(106, 23);
             this.addAppointmentBtn.TabIndex = 9;
@@ -267,11 +269,30 @@
             this.daySchedSubmitBtn.UseVisualStyleBackColor = true;
             this.daySchedSubmitBtn.Click += new System.EventHandler(this.daySchedSubmitBtn_Click);
             // 
+            // searchTb
+            // 
+            this.searchTb.Location = new System.Drawing.Point(1369, 41);
+            this.searchTb.Name = "searchTb";
+            this.searchTb.Size = new System.Drawing.Size(159, 20);
+            this.searchTb.TabIndex = 27;
+            this.searchTb.TextChanged += new System.EventHandler(this.searchTb_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1272, 45);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(91, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Search Customer:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 785);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.searchTb);
             this.Controls.Add(this.daySchedSubmitBtn);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dayScheduleDTP);
@@ -295,7 +316,7 @@
             this.Controls.Add(this.customerDGV);
             this.Controls.Add(this.appointmentsDGV);
             this.Name = "MainForm";
-            this.Text = " ";
+            this.Text = " Main";
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dayScheduleDGV)).EndInit();
@@ -328,5 +349,7 @@
         private System.Windows.Forms.DateTimePicker dayScheduleDTP;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button daySchedSubmitBtn;
+        private System.Windows.Forms.TextBox searchTb;
+        private System.Windows.Forms.Label label9;
     }
 }

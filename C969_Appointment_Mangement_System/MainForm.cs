@@ -28,6 +28,44 @@ namespace C969_Appointment_Mangement_System
             populateCustomerTable();
             populateAppointmentTable();
         }
+
+        public MainForm(string userId)
+        {
+            InitializeComponent();
+            populateCustomerTable();
+            populateAppointmentTable();
+            checkForUpcomingAppt(userId);
+        }
+
+        private void checkForUpcomingAppt(string userId)
+        {
+            DateTime nowUTC = DateTime.UtcNow;
+            DateTime dbTime;
+            TimeSpan timeDifference;
+
+            string apptTimeQuery = $"SELECT start FROM appointment WHERE userId = '{userId}';";
+
+            cmd = new MySqlCommand(apptTimeQuery, conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                dbTime = DateTime.Parse(dr["start"].ToString());
+
+                if (dbTime.Date == nowUTC.Date)
+                {
+                    timeDifference = dbTime.Subtract(nowUTC);
+
+                    if (timeDifference.TotalMinutes <= 15)
+                    {
+                        MessageBox.Show("There is an appointment within the next 15 minutes.");
+                    }
+                }
+            }
+        }
+
         // populates the appointment table
         private void populateAppointmentTable()
         {
@@ -63,7 +101,7 @@ namespace C969_Appointment_Mangement_System
         // populates the customer table
         private void populateCustomerTable()
         {
-            cmd = new MySqlCommand("SELECT customer.customerId AS ID, customer.customerName AS Customer_Name, address.address AS Address, address.phone AS Phone, city.city AS City, country.country AS Country " +
+            cmd = new MySqlCommand("SELECT customer.customerId AS ID, customer.customerName AS 'Customer Name', address.address AS Address, address.phone AS Phone, city.city AS City, country.country AS Country " +
                                         "FROM customer JOIN address ON customer.addressId = address.addressId " +
                                                   "JOIN city ON address.cityId = city.cityId " +
                                                   "JOIN country ON city.countryId = country.countryId;", conn);
@@ -236,6 +274,11 @@ namespace C969_Appointment_Mangement_System
         {
             CustomerAppointmentCountForm form = new CustomerAppointmentCountForm();
             form.Show();
+        }
+
+        private void searchTb_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
