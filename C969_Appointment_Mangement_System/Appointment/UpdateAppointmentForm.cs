@@ -43,7 +43,7 @@ namespace C969_Appointment_Mangement_System.Appointment
             populateUserCB();
             formatDateTimeFields(tempDate, tempStart, tempEnd);
         }
-
+        // updates appointment if all validation checks are good
         private void updateAppointmentBtn_Click(object sender, EventArgs e)
         {
             string userId, customerId, apptTitle, apptType, startTime, endTime, startUTC, endUTC;
@@ -72,7 +72,7 @@ namespace C969_Appointment_Mangement_System.Appointment
 
             }
         }
-
+        // gets and prefills fields for the form depending on what appointment was selected on main form
         private void GetAppointmentInfo(out string userId, out string customerId, out string apptTitle, out string apptType, out string startTime, out string endTime, out string startUTC, out string endUTC)
         {
             userId = userIdCB.Text;
@@ -91,7 +91,7 @@ namespace C969_Appointment_Mangement_System.Appointment
             startUTC = tempStartUTC.ToString("yyyy-MM-dd HH:mm:ss");
             endUTC = tempEndUTC.ToString("yyyy-MM-dd HH:mm:ss");
         }
-
+        // makes sure the updated appointment does not overlap with existing appointments
         private bool apptOverlap(string userId, string startUTC, string endUTC)
         {
             bool result = true;
@@ -118,7 +118,7 @@ namespace C969_Appointment_Mangement_System.Appointment
             }
             return result;
         }
-
+        // checks to make sure updates to appointment are still within business hours and days
         private bool checkBusinessHours(string startTime, string endTime)
         {
             if (DateTime.Parse(startTime) >= DateTime.Parse(endTime))
@@ -142,7 +142,7 @@ namespace C969_Appointment_Mangement_System.Appointment
             }
 
         }
-
+        // makes sure all fields are filled out and no whitespace
         private static bool allFieldsFilledOut(string apptTitle, string apptType)
         {
 
@@ -156,13 +156,6 @@ namespace C969_Appointment_Mangement_System.Appointment
                 return true;
             }
 
-        }
-
-        private void closeBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            MainForm main = new MainForm();
-            main.Show();
         }
 
         // converts date and time fields back into DateTime for match the formatting on the Update Appointment form then converts them back to strings
@@ -186,6 +179,13 @@ namespace C969_Appointment_Mangement_System.Appointment
                 userIdCB.Items.Add(reader[0]);
             }
             reader.Close();
+        }
+        // closes and returns user to main form
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainForm main = new MainForm();
+            main.Show();
         }
     }
 }
