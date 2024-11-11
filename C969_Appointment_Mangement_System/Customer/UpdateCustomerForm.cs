@@ -58,6 +58,7 @@ namespace C969_Appointment_Mangement_System
 
 
             // validates the text entries made by the user with the regex created above
+            // used a lambda to make it easier to read and save from writing extra code.
             Validate validate = () =>
             {
                 bool validation = false;
