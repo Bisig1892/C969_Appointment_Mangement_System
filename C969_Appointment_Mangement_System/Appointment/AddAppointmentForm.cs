@@ -60,7 +60,8 @@ namespace C969_Appointment_Mangement_System
             string startUTC = tempStartUTC.ToString("yyyy-MM-dd HH:mm:ss");
             string endUTC = tempEndUTC.ToString("yyyy-MM-dd HH:mm:ss");
 
-            bool allFieldsFilledOut()
+            // makes sure all fields are filled out with no whitespace
+            bool allFieldsFilledOut() 
             {
                 
                 if (string.IsNullOrWhiteSpace(apptTitle) || string.IsNullOrWhiteSpace(apptType))
@@ -74,7 +75,7 @@ namespace C969_Appointment_Mangement_System
                 }
 
             }
-
+            // checks to make sure scheduled appointment falls within business days and hours 
             bool checkBusinessHours()
             {
                 if (DateTime.Parse(startTime) >= DateTime.Parse(endTime))
@@ -99,6 +100,7 @@ namespace C969_Appointment_Mangement_System
 
             }
 
+            // checks to make sure appointment does not overlap with existing.
             bool apptOverlap()
             {
                 bool result = true;
@@ -136,6 +138,7 @@ namespace C969_Appointment_Mangement_System
                     {
                         try
                         {
+                            // creates the appointment
                             string getAppointmentIndex = "SELECT appointmentId FROM appointment ORDER BY appointmentId DESC LIMIT 1";
                             cmd = new MySqlCommand(getAppointmentIndex, conn);
                             int appointmentIndex = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
@@ -159,7 +162,7 @@ namespace C969_Appointment_Mangement_System
 
             }
         }
-
+        // populates customer combobox
         private void populateCustomerCB()
         {
             cmd = new MySqlCommand("SELECT customerId FROM customer ORDER BY customerId", conn);
@@ -170,7 +173,7 @@ namespace C969_Appointment_Mangement_System
             }
             reader.Close();
         }
-
+        // populates user combobox
         private void populateUserCB()
         {
             cmd = new MySqlCommand("SELECT userId FROM user ORDER BY userId", conn);
@@ -182,7 +185,7 @@ namespace C969_Appointment_Mangement_System
             reader.Close();
         }
 
-
+        // closes and returns to main form
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
