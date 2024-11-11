@@ -21,14 +21,13 @@ namespace C969_Appointment_Mangement_System
         MySqlCommand cmd;
         MySqlConnection conn = DBConnection.conn;
 
-
         public MainForm()
         {
             InitializeComponent();
             populateCustomerTable();
             populateAppointmentTable();
         }
-
+        //only used during login to check for upcoming appointments
         public MainForm(string userId)
         {
             InitializeComponent();
@@ -36,7 +35,7 @@ namespace C969_Appointment_Mangement_System
             populateAppointmentTable();
             checkForUpcomingAppt(userId);
         }
-
+        // checks database for appointments within the next 15 minutes and notifies the user if they have one scheduled.
         private void checkForUpcomingAppt(string userId)
         {
             DateTime nowUTC = DateTime.UtcNow;
@@ -171,13 +170,14 @@ namespace C969_Appointment_Mangement_System
                 }
             }
         }
+        // opens add appointment form
         private void addAppointmentBtn_Click(object sender, EventArgs e)
         {
             AddAppointmentForm addForm = new AddAppointmentForm();
             addForm.Show();
             this.Close();
         }
-
+        // opens update appointment form and passes the selected appointment information to prefill the fields.
         private void updateAppointmentBtn_Click(object sender, EventArgs e)
         {
             string appointmentId = appointmentsDGV.CurrentRow.Cells[0].Value.ToString();
@@ -200,7 +200,7 @@ namespace C969_Appointment_Mangement_System
                 this.Close();
             }
         }
-
+        // deletes the selected appointment
         private void deleteAppointmentBtn_Click(object sender, EventArgs e)
         {
             if (appointmentsDGV.SelectedRows.Count == 0)
@@ -228,19 +228,7 @@ namespace C969_Appointment_Mangement_System
                 }
             }
         }
-
-        private void monthlyApptBtn_Click(object sender, EventArgs e)
-        {
-            MonthlyApptTypeForm monthlyApptForm = new MonthlyApptTypeForm();
-            monthlyApptForm.Show();
-        }
-
-        private void userScheduleBtn_Click(object sender, EventArgs e)
-        {
-            UserScheduleReportForm userScheduleReport = new UserScheduleReportForm();
-            userScheduleReport.Show();
-        }
-
+        // shows the scheduled appointments for all user for date selected in the date picker
         private void daySchedSubmitBtn_Click(object sender, EventArgs e)
         {
             string tempDaySchedule = dayScheduleDTP.Value.ToString("yyyy-MM-dd");
@@ -269,13 +257,25 @@ namespace C969_Appointment_Mangement_System
             dayScheduleDGV.Columns["Customer ID"].Visible = false;
             dayScheduleDGV.Columns["User ID"].Visible = false;
         }
-
+        // runs a report that returns the amount appointments per month by type.
+        private void monthlyApptBtn_Click(object sender, EventArgs e)
+        {
+            MonthlyApptTypeForm monthlyApptForm = new MonthlyApptTypeForm();
+            monthlyApptForm.Show();
+        }
+        // opens form to select userId to see their personal schedule
+        private void userScheduleBtn_Click(object sender, EventArgs e)
+        {
+            UserScheduleReportForm userScheduleReport = new UserScheduleReportForm();
+            userScheduleReport.Show();
+        }
+        // runs a report that returns a count for appointments per customer
         private void custApptCount_Click(object sender, EventArgs e)
         {
             CustomerAppointmentCountForm form = new CustomerAppointmentCountForm();
             form.Show();
         }
-
+        //for capstone not implemented yet
         private void searchTb_TextChanged(object sender, EventArgs e)
         {
 
