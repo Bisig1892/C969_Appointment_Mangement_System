@@ -21,11 +21,11 @@ namespace C969_Appointment_Mangement_System
 {
     public partial class LoginForm : Form
     {
-        MySqlDataReader reader;
         MySqlCommand cmd;
         MySqlConnection conn = DBConnection.conn;
-        MySqlDataAdapter adp;
 
+
+        // gets culture information from the local system
         private readonly string userCulture = CultureInfo.CurrentCulture.Name;
         public static string username { get; set; }
         public static int userID { get; set; }
@@ -37,6 +37,11 @@ namespace C969_Appointment_Mangement_System
 
 
         private void LoginForm_Load(object sender, EventArgs e)
+        {
+            checkCulture();
+        }
+        // changes labels if the culture is set to es-MX
+        private void checkCulture()
         {
             if (userCulture == "es-MX")
             {
@@ -82,7 +87,7 @@ namespace C969_Appointment_Mangement_System
                         loginSuccess = false;
                     }
                 }
-
+                // logs logins if username and password are correct
                 if (loginSuccess == true)
                 {
                     if (File.Exists(filePath) == false)
@@ -105,6 +110,7 @@ namespace C969_Appointment_Mangement_System
                     }
 
                     this.Hide();
+                    // passes userId to main form to check for appointments within the next 15 minutes
                     MainForm mainForm = new MainForm(userId);
                     mainForm.Show();
                 }
@@ -119,7 +125,8 @@ namespace C969_Appointment_Mangement_System
                         MessageBox.Show("Wrong passsword or username. Please try again.");
                     }
                     passwordTb.Clear();
-
+                    
+                    // logs unsuccessful login attempts
                     if (File.Exists(filePath) == false)
                     {
                         File.Create(filePath).Dispose();
@@ -146,43 +153,6 @@ namespace C969_Appointment_Mangement_System
             }
 
         }
-
-        
-           
-
-        //private void upcomingAppt(string Id)
-        //{
-        //    string userId = Id;
-            
-        //    string appointmentAlert = $"SELECT * FROM appointment";
-        //    cmd = new MySqlCommand(appointmentAlert, conn);
-        //    adp = new MySqlDataAdapter(cmd);
-        //    DataTable dt = new DataTable();
-        //    adp.Fill(dt);
-
-        //    foreach(DataRow dr in dt.Rows)
-        //    {
-        //        if (dr["userId"].ToString() == userId)
-        //        {
-        //            var dBTime = DateTime.Parse(dr["start"].ToString()).ToLocalTime();
-        //            var localTime = DateTime.Now.ToLocalTime();
-
-        //            MessageBox.Show(dBTime.ToString(), localTime.ToString());
-        //            if (dBTime.Date == localTime.Date)
-        //            {
-        //                var timeDifferential = dBTime.Subtract(localTime);
-        //                if (timeDifferential.TotalMinutes <= 15)
-        //                {
-        //                    MessageBox.Show("Attention!\nThere is an appointment within the next 15 minutes.");
-        //                }
-        //            }
-        //        }
-        //    }
-
-
-
-        //}
-
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
