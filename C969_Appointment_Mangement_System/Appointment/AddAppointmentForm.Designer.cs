@@ -145,7 +145,7 @@
             this.dateDTP.CustomFormat = "MM-dd-yyyy";
             this.dateDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateDTP.Location = new System.Drawing.Point(327, 131);
-            this.dateDTP.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
+            this.dateDTP.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateDTP.Name = "dateDTP";
             this.dateDTP.Size = new System.Drawing.Size(200, 20);
             this.dateDTP.TabIndex = 11;
