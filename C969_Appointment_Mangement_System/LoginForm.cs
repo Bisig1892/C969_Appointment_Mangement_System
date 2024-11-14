@@ -26,7 +26,7 @@ namespace C969_Appointment_Mangement_System
 
 
         // gets culture information from the local system
-        // Works on Windows 11 when changing language in language settings. Does not meet the eval requirements for some reason. 
+        // Works on Windows 11 when changing language in language settings. Does not meet the eval requirements. 
         //private readonly string userCulture = CultureInfo.CurrentCulture.Name;
 
         RegionInfo currRegion = RegionInfo.CurrentRegion;
@@ -41,7 +41,7 @@ namespace C969_Appointment_Mangement_System
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            //checkCulture(); // Works on Windows 11 when changing language in language settings. Does not meet the eval requirements for some reason. 
+            //checkCulture(); // Works on Windows 11 when changing language in language settings. Does not meet the eval requirements. 
 
             getRegion(currRegion);
         }
