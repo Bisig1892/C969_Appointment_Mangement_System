@@ -26,7 +26,10 @@ namespace C969_Appointment_Mangement_System
 
 
         // gets culture information from the local system
-        private readonly string userCulture = CultureInfo.CurrentCulture.Name;
+        // Works on Windows 11 when changing language in language settings. Does not meet the eval requirements for some reason. 
+        //private readonly string userCulture = CultureInfo.CurrentCulture.Name;
+
+        RegionInfo currRegion = RegionInfo.CurrentRegion;
         public static string username { get; set; }
         public static int userID { get; set; }
 
@@ -38,12 +41,13 @@ namespace C969_Appointment_Mangement_System
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            checkCulture();
+            //checkCulture(); // Works on Windows 11 when changing language in language settings. Does not meet the eval requirements for some reason. 
+
+            getRegion(currRegion);
         }
-        // changes labels if the culture is set to es-MX
-        private void checkCulture()
+        private void getRegion(RegionInfo currRegion)
         {
-            if (userCulture == "es-MX")
+            if (currRegion.TwoLetterISORegionName == "MX")
             {
                 this.Text = "Acceso";
                 loginLabel.Text = "Acceso";
@@ -52,7 +56,21 @@ namespace C969_Appointment_Mangement_System
                 loginBtn.Text = "Acceso";
                 closeBtn.Text = "Cerca";
             }
+            
         }
+        //// changes labels if the culture is set to es-MX
+        //private void checkCulture()
+        //{
+        //    if (userCulture == "es-MX")
+        //    {
+        //        this.Text = "Acceso";
+        //        loginLabel.Text = "Acceso";
+        //        usernameLabel.Text = "Nombre de usuario";
+        //        passwordLabel.Text = "Contraseña";
+        //        loginBtn.Text = "Acceso";
+        //        closeBtn.Text = "Cerca";
+        //    }
+        //}
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
@@ -116,7 +134,7 @@ namespace C969_Appointment_Mangement_System
                 }
                 else
                 {
-                    if (userCulture == "es-MX")
+                    if ( currRegion.TwoLetterISORegionName == "MX")
                     {
                         MessageBox.Show("Contraseña o nombre de usuario incorrectos. Por favor inténtalo de nuevo.");
                     }
